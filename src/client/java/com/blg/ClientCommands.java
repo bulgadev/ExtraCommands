@@ -22,5 +22,13 @@ public  class ClientCommands {
                             return 1;
                         })
         );
+        //register the command
+        dispatcher.register(
+                literal("test")
+                        .executes(context -> {
+                            System.out.println("Hello World!");
+                            return 1;
+                        })
+        );
     }
 }
