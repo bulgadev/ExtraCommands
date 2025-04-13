@@ -8,9 +8,13 @@ import static net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.lit
 
 public  class ClientCommands {
     private static boolean dispcords = false;
+    private static boolean secret = false;
 
     public static boolean disp() {
         return dispcords;
+    }
+    public static boolean secret1() {
+        return secret;
     }
 
     public static void register(CommandDispatcher<FabricClientCommandSource> dispatcher) {
@@ -27,6 +31,14 @@ public  class ClientCommands {
                 literal("test")
                         .executes(context -> {
                             System.out.println("Hello World!");
+                            return 1;
+                        })
+        );
+        dispatcher.register(
+                literal("secret")
+                        .executes (context -> {
+                            secret = !secret;
+                            context.getSource().getPlayer().sendMessage(Text.literal("Secret" + secret), false);
                             return 1;
                         })
         );
