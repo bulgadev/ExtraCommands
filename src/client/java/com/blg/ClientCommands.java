@@ -9,6 +9,7 @@ import static net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.lit
 public  class ClientCommands {
     private static boolean dispcords = false;
     private static boolean secret = false;
+    private static boolean near = false;
 
     public static boolean disp() {
         return dispcords;
@@ -16,7 +17,9 @@ public  class ClientCommands {
     public static boolean secret1() {
         return secret;
     }
-
+    public static boolean near1() {
+        return near;
+    }
     public static void register(CommandDispatcher<FabricClientCommandSource> dispatcher) {
         dispatcher.register(
                 literal("cords")
@@ -39,6 +42,14 @@ public  class ClientCommands {
                         .executes (context -> {
                             secret = !secret;
                             context.getSource().getPlayer().sendMessage(Text.literal("Secret" + secret), false);
+                            return 1;
+                        })
+        );
+        dispatcher.register(
+                literal("near")
+                        .executes(context -> {
+                            near = !near;
+                            context.getSource().getPlayer().sendMessage(Text.literal("Near" + near), false);
                             return 1;
                         })
         );
