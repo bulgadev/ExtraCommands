@@ -89,6 +89,7 @@ public class Blg1Client implements ClientModInitializer {
 		ClientPlayerEntity player = mc.player;
 
 		if(mc.player != null) {
+			int posINI = 90;
 			for (PlayerEntity otherPlayer : mc.world.getPlayers()) {
 				if (otherPlayer == mc.player) continue;
 
@@ -99,9 +100,11 @@ public class Blg1Client implements ClientModInitializer {
 				String y = String.valueOf(esp.y).split("\\.")[0];
 				String z = String.valueOf(esp.z).split("\\.")[0];
 				String espString = "Player" + otherPlayer.getName().getString() + ": X =" + x + " Y=" + y + " Z=" + z;
-				context.drawText(mc.textRenderer, espString, 10, 100, 0xFFFFFFFF, false);
+				context.drawText(mc.textRenderer, espString, 10, posINI, 0xFFFFFFFF, false);
+
+				posINI = posINI + 10;
 			}
-			context.drawText(mc.textRenderer, "Esp:", 10, 90, 0xFFFFFFFF, false);
+			context.drawText(mc.textRenderer, "Esp:", 10, 80, 0xFFFFFFFF, false);
 		}
 	};
 
@@ -110,6 +113,7 @@ public class Blg1Client implements ClientModInitializer {
 		//gets player info
 		ClientPlayerEntity player = mc.player;
 
+		int iniPOS = 90;
 		if(mc.player != null) {
 			for (PlayerEntity otherPlayer : mc.world.getPlayers()) {
 				if (otherPlayer == mc.player) continue;
@@ -117,9 +121,11 @@ public class Blg1Client implements ClientModInitializer {
 				Vec3d esp = player.getPos();
 				String name = "Player: " + otherPlayer.getName().getString();
 
-				String message = "Player near: " + name;
 
-				context.drawText(mc.textRenderer, message, 10, 100, 0xFFFFFFFF, false);
+				context.drawText(mc.textRenderer, "Players Near:", 10, 80, 0xFFFFFFFF, false);
+				context.drawText(mc.textRenderer, name, 10, iniPOS, 0xFFFFFFFF, false);
+
+				iniPOS = iniPOS + 10;
 			}
 		}
 	}
